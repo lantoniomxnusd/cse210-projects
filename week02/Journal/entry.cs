@@ -1,31 +1,17 @@
 using System;
+using System.Net;
 
 public class Entry
 {
-    public string Date { get; set; }
-    public string Prompt { get; set; }
-    public string Response { get; set; }
+    public string _date;
+    public string _promptText;
+    public string _entryText;
 
     public Entry(string prompt, string response)
     {
-        Date = DateTime.Now.ToShortDateString();
-        Prompt = prompt;
-        Response = response;
+        _date = DateTime.Now.ToShortDateString();
+        _promptText = prompt;
+        _entryText = response;
     }
 
-    public override string ToString()
-    {
-        return $"Date: {Date}\nPrompt: {Prompt}\nResponse: {Response}\n";
-    }
-
-    public string ToFileString()
-    {
-        return $"{Date}|{Prompt}|{Response}";
-    }
-
-    public static Entry FromFileString(string line)
-    {
-        var parts = line.Split('|');
-        return new Entry(parts[1], parts[2]) { Date = parts[0] };
-    }
 }

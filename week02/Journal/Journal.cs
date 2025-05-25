@@ -4,41 +4,47 @@ using System.IO;
 
 public class Journal
 {
-    private List<Entry> entries = new List<Entry>();
 
-    public void AddEntry(Entry entry)
+    public List<Entry> _entries = new List<Entry>();
+
+    public void AddEntry(Entry newEntry)
     {
-        entries.Add(entry);
+        _entries.Add(newEntry);
     }
 
-    public void Display()
+    public void DisplayAll()
     {
-        foreach (var entry in entries)
+        foreach (Entry entry in _entries)
         {
-            Console.WriteLine(entry);
+            Console.WriteLine($"Date: {entry._date}");
+            Console.WriteLine($"Prompt: {entry._promptText}");
+            Console.WriteLine($"Entry: {entry._entryText}\n");
         }
     }
-
     public void SaveToFile(string filename)
     {
-        using (StreamWriter writer = new StreamWriter(filename))
+        using (StreamWriter outputFile = new StreamWriter(filename))
         {
-            foreach (var entry in entries)
+            foreach (Entry entry in _entries)
             {
-                writer.WriteLine(entry.ToFileString());
+                outputFile.WriteLine($"{entry._date}| {entry._promptText}| {entry._entryText}");
             }
         }
-        Console.WriteLine("Journal saved.");
     }
 
     public void LoadFromFile(string filename)
     {
-        entries.Clear();
-        string[] lines = File.ReadAllLines(filename);
-        foreach (string line in lines)
+        string[] Lines = System.IO.File.ReadAllLines(filename);
+
+        foreach (string line in Lines)
         {
-            entries.Add(Entry.FromFileString(line));
+            Console.WriteLine(line);
+            // Line will have something like this: "right now, Generic, Testing"
+            string[] parts = line.Split("|");
+
+            Entry loadedEntry = new Entry(parts[1], parts[2]);
+            loadedEntry._date = parts[0];
+            _entries.Add(loadedEntry);
         }
-        Console.WriteLine("Journal loaded.");
     }
 }

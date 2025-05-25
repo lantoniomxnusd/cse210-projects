@@ -5,26 +5,26 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Person p1 = new Person();
-        // p1._firstName = "Mary";
-        // p1._lastName = "Smith";
-        // p1._age = 25;
+        Person p1 = new Person();
+        p1._firstName = "Mary";
+        p1._lastName = "Smith";
+        p1._age = 25;
 
-        // Person p2 = new Person();
-        // p2._firstName = "Johen";
-        // p2._lastName = "Whatckin";
-        // p2._age = 30;
+        Person p2 = new Person();
+        p2._firstName = "Johen";
+        p2._lastName = "Whatckin";
+        p2._age = 30;
 
-        // List<Person> people = new List<Person>();
-        // people.Add(p1);
-        // people.Add(p2);
+        List<Person> people = new List<Person>();
+        people.Add(p1);
+        people.Add(p2);
 
-        // foreach (Person p in people)
-        // {
-        //     Console.WriteLine(p._firstName);
-        // }
+        foreach (Person p in people)
+        {
+            Console.WriteLine(p._firstName);
+        }
 
-        // SaveToFile(people);
+        SaveToFile(people);
 
         List<Person> newPeople = ReadFromFile();
         foreach (Person p in newPeople)
