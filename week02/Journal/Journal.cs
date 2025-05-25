@@ -27,18 +27,18 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date}| {entry._promptText}| {entry._entryText}");
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
             }
         }
     }
 
     public void LoadFromFile(string filename)
     {
-        string[] Lines = System.IO.File.ReadAllLines(filename);
+        string[] Lines = File.ReadAllLines(filename);
 
         foreach (string line in Lines)
         {
-            Console.WriteLine(line);
+        //     Console.WriteLine(line);
             // Line will have something like this: "right now, Generic, Testing"
             string[] parts = line.Split("|");
 
