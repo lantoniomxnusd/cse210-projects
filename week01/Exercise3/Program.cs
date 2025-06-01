@@ -10,7 +10,7 @@ class Program
 
         Console.WriteLine("What is your guess?");
         string userGuess = Console.ReadLine();
-        int guess = int.Parse(userGuess);
+        var
         int count = 1;
 
         while (guess != randomNumber)
